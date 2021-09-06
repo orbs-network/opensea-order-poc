@@ -1,0 +1,38 @@
+{
+  "name": "nft-game",
+  "version": "1.0.0",
+  "author": "Roetm",
+  "license": "MIT",
+  "dependencies": {
+    "@defi.org/web3-candies": "^1.4.1",
+    "@nomiclabs/hardhat-etherscan": "2.x",
+    "@nomiclabs/hardhat-web3": "2.x",
+    "@typechain/hardhat": "2.x",
+    "hardhat": "2.x",
+    "opensea-js": "^1.2.0",
+    "ts-node": "^10.2.0",
+    "web3": "^1.5.2"
+  },
+  "devDependencies": {
+    "ethereumjs-hooks": "git+https://github.com/defi-org-code/ethereumjs-hooks.git"
+  },
+  "scripts": {
+    "postinstall": "ethereumjs-hooks",
+    "prettier": "prettier --write '{contracts,src,test}/**/*.{ts,js,json,sol}'",
+    "typechain": "typechain --target=web3-v1 --out-dir=typechain-abi 'abi/**/*.json' && npx hardhat typechain",
+    "prebuild": "rm -rf artifacts && rm -rf typechain-hardhat && rm -rf typechain-abi && npm run prettier && npm run typechain",
+    "build": "npx hardhat compile && npx solhint 'contracts/**/*.sol'",
+    "quicktest": "npx hardhat test --logs",
+    "test": "npm run build && npx hardhat test --logs",
+    "deploy": "npx hardhat deploy --network $1"
+  },
+  "prettier": {
+    "printWidth": 120
+  },
+  "description": "TBD",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
+}
